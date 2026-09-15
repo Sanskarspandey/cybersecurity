@@ -1,0 +1,79 @@
+{
+  "event_id": "DEMO-SCENARIO-1-NORMAL",
+  "timestamp_utc": "2026-09-14T18:34:17.068321+00:00",
+  "raw_input": {
+    "source_ip": "192.168.1.101",
+    "destination_ip": "192.168.1.10",
+    "protocol": "modbus_tcp",
+    "feature_count": 51
+  },
+  "physical_context": {
+    "asset_id": "HMI-STATION-01",
+    "asset_type": "HMI",
+    "asset_criticality": 2,
+    "human_worker_present": false,
+    "worker_distance_m": 10.0,
+    "human_proximity_factor": 1.0,
+    "is_simulated_context": true
+  },
+  "detection": {
+    "tier1_prediction": "Normal",
+    "tier1_confidence": 1.0,
+    "fast_tracked": true,
+    "tier2_prediction": null,
+    "tier2_confidence": null,
+    "tier2_probabilities": null,
+    "effective_prediction": "Normal",
+    "effective_confidence": 1.0,
+    "latency_ms": 6.138
+  },
+  "xai": {
+    "top_features": [],
+    "xai_alignment_score": 0.0,
+    "method": "Bypassed (Fast-Tracked)",
+    "summary": "Tier 1 Edge validated benign flow with high confidence; Fog DL and XAI bypassed.",
+    "latency_ms": 0.0
+  },
+  "risk": {
+    "composite_risk": 5.0,
+    "risk_level": "LOW",
+    "normalized_threat_severity": 0.0,
+    "normalized_confidence": 0.0,
+    "normalized_asset_criticality": 0.25,
+    "normalized_human_proximity": 0.0,
+    "normalized_xai_alignment": 0.0,
+    "weights": {
+      "w_threat_severity": 0.35,
+      "w_detection_confidence": 0.2,
+      "w_asset_criticality": 0.2,
+      "w_human_proximity": 0.15,
+      "w_xai_alignment": 0.1
+    },
+    "formula": "R = 100 * (0.35*S + 0.2*C + 0.2*A + 0.15*H + 0.1*X)"
+  },
+  "decision": {
+    "action": "ALLOW",
+    "requires_human_approval": false,
+    "pdp_rule_triggered": "PDP-RULE-01-FAST_TRACK_ALLOW",
+    "rationale": "Benign traffic verified at Tier 1 Edge with risk 5.00 < 20.0. Full line-rate access granted.",
+    "safety_advisory": null
+  },
+  "response": {
+    "simulated_commands": [
+      "SIMULATED_ENFORCEMENT_COMMAND: iptables -C FORWARD -s 192.168.1.101 -j ACCEPT 2>/dev/null || iptables -A FORWARD -s 192.168.1.101 -d 192.168.1.10 -j ACCEPT"
+    ],
+    "action_executed": "ALLOW",
+    "quarantined": false,
+    "incident_logged": true,
+    "incident_file": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/experiments/incidents/incident_DEMO-SCENARIO-1-NORMAL.json",
+    "execution_timestamp": "2026-09-14T18:34:17.083633+00:00"
+  },
+  "audit_trail": [
+    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-1-NORMAL at 2026-09-14T18:34:17.068321+00:00",
+    "MonitoringAgent: Ingested and validated flow 192.168.1.101:502 -> 192.168.1.10:502 (modbus_tcp) [asset=HMI-STATION-01, criticality=2, worker_dist=10.0m]",
+    "DetectionAgent: Tier 1 Edge predicted 'Normal' (conf=1.0000 >= 0.95) -> FAST-TRACKED (Bypassed Fog DL & XAI) [latency=6.14ms]",
+    "RiskAssessmentAgent: Evaluated risk=5.00 (LOW) for threat='Normal' on asset crit=2",
+    "DecisionAgent: PDP selected action 'ALLOW' via rule PDP-RULE-01-FAST_TRACK_ALLOW",
+    "ResponseAgent: Enforced action 'ALLOW' via 1 simulated command(s). Quarantine=False. Forensic incident logged."
+  ]
+}

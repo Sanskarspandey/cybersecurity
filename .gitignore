@@ -1,0 +1,90 @@
+# ==============================================================================
+# Git Ignore Configuration
+# Project: A Self-Adaptive Zero Trust Cybersecurity Architecture for Industry 5.0
+# ==============================================================================
+
+# Python Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python Bytecode and Compilation Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Secrets, Environment Variables & Private Credentials
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+*.crt
+id_rsa*
+secrets.json
+
+# Raw Multi-Gigabyte Datasets (Edge-IIoTset: ~1.13 GB)
+# Original CSV must be downloaded following instructions in data/README.md
+data/raw/*
+!data/raw/.gitkeep
+
+# Large Intermediate Processed Partitions
+# Full train (37 MB) and validation partitions are generated via preprocessing/preprocess.py
+data/processed/train.parquet
+data/processed/val.parquet
+data/processed/*.csv
+data/processed/*.zip
+data/processed/*.tar.gz
+
+# Retain Evaluation Test Partition, Schemas & Keeps
+!data/processed/test.parquet
+!data/processed/feature_manifest.json
+!data/processed/.gitkeep
+
+# Frozen Lightweight Model Checkpoints (Total < 350 KB)
+# Retained for out-of-the-box reproducibility of Edge, Fog, XAI, and Agent inference
+!models/edge_decision_tree.joblib
+!models/fog_dnn.pth
+!models/preprocessor.joblib
+!models/scaler.joblib
+!models/encoder.joblib
+!models/imputer.joblib
+!models/xai_background.npy
+!models/*.json
+!models/*.py
+!models/.gitkeep
+
+# Ignore arbitrary large external checkpoints if added later
+*.onnx
+*.h5
+*.tflite
+
+# IDE & Editor Metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/

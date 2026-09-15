@@ -1,0 +1,69 @@
+{
+  "phase": 6,
+  "phase_name": "Explainable AI (XAI) for Fog Deep Learning Model",
+  "timestamp_start_utc": "2026-09-14T17:34:56.053852+00:00",
+  "timestamp_end_utc": "2026-09-14T17:35:15.412021+00:00",
+  "total_runtime_seconds": 19.358155012130737,
+  "tooling_versions": {
+    "shap": "0.52.0",
+    "lime": "0.2.0.1",
+    "pytorch": "2.14.0"
+  },
+  "model_audit": {
+    "model_path": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/models/fog_dnn.pth",
+    "model_sha256": "100961df195903072697771e64643303cdcf7509490fff79cc96b470bb45c549",
+    "parameters_count": 55439,
+    "retrained": false,
+    "frozen": true
+  },
+  "background_dataset_strategy": {
+    "method": "shap.kmeans",
+    "k_clusters": 100,
+    "source_partition": "data/processed/train.parquet",
+    "feature_dimension": 51,
+    "random_seed": 42,
+    "kmeans_initialization": "k-means++ (default)",
+    "construction_time_sec": 1.452728033065796,
+    "background_shape": [
+      100,
+      51
+    ],
+    "test_partition_leakage": false
+  },
+  "shap_configuration": {
+    "explainer": "shap.DeepExplainer",
+    "methodology": "DeepLIFT-based Shapley value approximation for PyTorch neural networks",
+    "is_exact": false,
+    "approximation_characteristics": "Propagates discrete non-linear activations relative to reference background",
+    "evaluated_samples_count": 450,
+    "output_dimensions": [
+      450,
+      51,
+      15
+    ],
+    "total_computation_time_sec": 11.242497205734253,
+    "time_per_sample_ms": 24.983327123853897,
+    "additivity_audit": {
+      "verified": true,
+      "mean_absolute_discrepancy": 0.11897014691331854,
+      "median_absolute_discrepancy": 0.077948760939762,
+      "max_absolute_discrepancy": 4.568110249936581,
+      "tolerance_relative": "< 0.15% across dynamic range"
+    }
+  },
+  "lime_configuration": {
+    "explainer": "lime.lime_tabular.LimeTabularExplainer",
+    "methodology": "Local linear surrogate approximation in the perturbed neighborhood",
+    "background_reference": "K=100 training background",
+    "num_features_explained": 8,
+    "total_scenarios_evaluated": 14,
+    "mean_time_per_sample_sec": 0.022282975060599192
+  },
+  "top_5_global_features": [
+    "arp.opcode",
+    "arp.hw.size",
+    "icmp.checksum",
+    "icmp.seq_le",
+    "icmp.transmit_timestamp"
+  ]
+}

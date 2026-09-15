@@ -1,0 +1,444 @@
+{
+  "manifest_version": "1.0",
+  "created_at": "2026-09-14T15:54:40Z",
+  "raw_dataset": {
+    "path": "data/raw/DNN-EdgeIIoT-dataset.csv",
+    "raw_rows": 2219201,
+    "raw_columns": 63,
+    "duplicates_removed": 815,
+    "deduplicated_rows": 2218386
+  },
+  "target_variables": {
+    "binary_target": {
+      "name": "Attack_label",
+      "type": "binary",
+      "classes": {
+        "0": "Normal",
+        "1": "Attack"
+      }
+    },
+    "multiclass_target": {
+      "name": "Attack_type",
+      "type": "multiclass",
+      "classes": {
+        "Normal": 0,
+        "Backdoor": 1,
+        "DDoS_HTTP": 2,
+        "DDoS_ICMP": 3,
+        "DDoS_TCP": 4,
+        "DDoS_UDP": 5,
+        "Fingerprinting": 6,
+        "MITM": 7,
+        "Password": 8,
+        "Port_Scanning": 9,
+        "Ransomware": 10,
+        "SQL_injection": 11,
+        "Uploading": 12,
+        "Vulnerability_scanner": 13,
+        "XSS": 14
+      },
+      "num_classes": 15
+    }
+  },
+  "feature_selection_decision_table": {
+    "zero_variance_removed": [
+      {
+        "feature": "icmp.unused",
+        "reason": "Constant 0.0 across all records, zero mutual information"
+      },
+      {
+        "feature": "http.tls_port",
+        "reason": "Constant 0.0 across all records, zero mutual information"
+      },
+      {
+        "feature": "dns.qry.type",
+        "reason": "Constant 0.0 across all records, zero mutual information"
+      },
+      {
+        "feature": "mqtt.msg_decoded_as",
+        "reason": "Constant 0.0 across all records, zero mutual information"
+      }
+    ],
+    "identifier_leakage_removed": [
+      {
+        "feature": "frame.time",
+        "reason": "Testbed LAN IP address or timestamp leading to artificial memorization"
+      },
+      {
+        "feature": "ip.src_host",
+        "reason": "Testbed LAN IP address or timestamp leading to artificial memorization"
+      },
+      {
+        "feature": "ip.dst_host",
+        "reason": "Testbed LAN IP address or timestamp leading to artificial memorization"
+      },
+      {
+        "feature": "arp.src.proto_ipv4",
+        "reason": "Testbed LAN IP address or timestamp leading to artificial memorization"
+      },
+      {
+        "feature": "arp.dst.proto_ipv4",
+        "reason": "Testbed LAN IP address or timestamp leading to artificial memorization"
+      }
+    ],
+    "unstructured_payload_removed": [
+      {
+        "feature": "tcp.payload",
+        "reason": "Raw packet bytes/payload text unsuited for tabular ML models"
+      },
+      {
+        "feature": "tcp.options",
+        "reason": "Raw packet bytes/payload text unsuited for tabular ML models"
+      },
+      {
+        "feature": "http.file_data",
+        "reason": "Raw packet bytes/payload text unsuited for tabular ML models"
+      },
+      {
+        "feature": "http.request.full_uri",
+        "reason": "Raw packet bytes/payload text unsuited for tabular ML models"
+      },
+      {
+        "feature": "http.request.uri.query",
+        "reason": "Raw packet bytes/payload text unsuited for tabular ML models"
+      },
+      {
+        "feature": "mqtt.msg",
+        "reason": "Raw packet bytes/payload text unsuited for tabular ML models"
+      }
+    ],
+    "exploit_and_corrupt_removed": [
+      {
+        "feature": "http.referer",
+        "reason": "Injected exploit string, raw query injection, or severe header misalignment"
+      },
+      {
+        "feature": "http.request.version",
+        "reason": "Injected exploit string, raw query injection, or severe header misalignment"
+      },
+      {
+        "feature": "dns.qry.name.len",
+        "reason": "Injected exploit string, raw query injection, or severe header misalignment"
+      },
+      {
+        "feature": "mqtt.conack.flags",
+        "reason": "Injected exploit string, raw query injection, or severe header misalignment"
+      }
+    ],
+    "numerical_features_retained": [
+      {
+        "feature": "arp.opcode",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "arp.hw.size",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "icmp.checksum",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "icmp.seq_le",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "icmp.transmit_timestamp",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "http.content_length",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "http.response",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.ack",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.ack_raw",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.checksum",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.connection.fin",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.connection.rst",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.connection.syn",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.connection.synack",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.dstport",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.flags",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.flags.ack",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.len",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.seq",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "tcp.srcport",
+        "scaler": "RobustScaler",
+        "handling": "SimpleImputer(strategy='median') for missing/corrupted entries"
+      },
+      {
+        "feature": "udp.port",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "udp.stream",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "udp.time_delta",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "dns.qry.name",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "dns.qry.qu",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "dns.retransmission",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "dns.retransmit_request",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "dns.retransmit_request_in",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mqtt.conflag.cleansess",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mqtt.conflags",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mqtt.hdrflags",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mqtt.len",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mqtt.msgtype",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mqtt.proto_len",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mqtt.topic_len",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mqtt.ver",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mbtcp.len",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mbtcp.trans_id",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      },
+      {
+        "feature": "mbtcp.unit_id",
+        "scaler": "RobustScaler",
+        "handling": "Pass-through to RobustScaler"
+      }
+    ],
+    "categorical_features_retained": [
+      {
+        "feature": "http.request.method",
+        "encoder": "OneHotEncoder(handle_unknown='ignore')",
+        "resulting_columns": [
+          "http.request.method_GET",
+          "http.request.method_None",
+          "http.request.method_OPTIONS",
+          "http.request.method_POST",
+          "http.request.method_PROPFIND",
+          "http.request.method_PUT",
+          "http.request.method_SEARCH",
+          "http.request.method_TRACE"
+        ]
+      },
+      {
+        "feature": "mqtt.protoname",
+        "encoder": "OneHotEncoder(handle_unknown='ignore')",
+        "resulting_columns": [
+          "mqtt.protoname_MQTT",
+          "mqtt.protoname_None"
+        ]
+      },
+      {
+        "feature": "mqtt.topic",
+        "encoder": "OneHotEncoder(handle_unknown='ignore')",
+        "resulting_columns": [
+          "mqtt.topic_None",
+          "mqtt.topic_Temperature_and_Humidity"
+        ]
+      }
+    ]
+  },
+  "tcp_srcport_audit": {
+    "valid_numeric_count": 2218019,
+    "invalid_corrupt_count": 367,
+    "invalid_patterns": {
+      "_googlecast._tcp.local": 216,
+      "DESKTOP-UHF0SF2.local": 77,
+      "DESKTOP-UHF0SF2": 74
+    },
+    "affected_classes": {
+      "MITM": 367
+    },
+    "handling_decision": "Parsed with pd.to_numeric(errors='coerce') -> SimpleImputer(strategy='median') fitted on training set -> RobustScaler. Zero rows dropped; no artificial 0.0 coerced."
+  },
+  "final_dataset_dimensions": {
+    "num_features": 51,
+    "feature_names": [
+      "arp.opcode",
+      "arp.hw.size",
+      "icmp.checksum",
+      "icmp.seq_le",
+      "icmp.transmit_timestamp",
+      "http.content_length",
+      "http.response",
+      "tcp.ack",
+      "tcp.ack_raw",
+      "tcp.checksum",
+      "tcp.connection.fin",
+      "tcp.connection.rst",
+      "tcp.connection.syn",
+      "tcp.connection.synack",
+      "tcp.dstport",
+      "tcp.flags",
+      "tcp.flags.ack",
+      "tcp.len",
+      "tcp.seq",
+      "tcp.srcport",
+      "udp.port",
+      "udp.stream",
+      "udp.time_delta",
+      "dns.qry.name",
+      "dns.qry.qu",
+      "dns.retransmission",
+      "dns.retransmit_request",
+      "dns.retransmit_request_in",
+      "mqtt.conflag.cleansess",
+      "mqtt.conflags",
+      "mqtt.hdrflags",
+      "mqtt.len",
+      "mqtt.msgtype",
+      "mqtt.proto_len",
+      "mqtt.topic_len",
+      "mqtt.ver",
+      "mbtcp.len",
+      "mbtcp.trans_id",
+      "mbtcp.unit_id",
+      "http.request.method_GET",
+      "http.request.method_None",
+      "http.request.method_OPTIONS",
+      "http.request.method_POST",
+      "http.request.method_PROPFIND",
+      "http.request.method_PUT",
+      "http.request.method_SEARCH",
+      "http.request.method_TRACE",
+      "mqtt.protoname_MQTT",
+      "mqtt.protoname_None",
+      "mqtt.topic_None",
+      "mqtt.topic_Temperature_and_Humidity"
+    ],
+    "splits": {
+      "train": {
+        "rows": 1552870,
+        "path": "data/processed/train.parquet",
+        "file_size_mb": 37.32
+      },
+      "validation": {
+        "rows": 332758,
+        "path": "data/processed/val.parquet",
+        "file_size_mb": 8.58
+      },
+      "test": {
+        "rows": 332758,
+        "path": "data/processed/test.parquet",
+        "file_size_mb": 8.57
+      }
+    }
+  }
+}

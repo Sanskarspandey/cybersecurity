@@ -1,0 +1,267 @@
+{
+  "model_type": "EdgeDecisionTreeClassifier (sklearn.tree.DecisionTreeClassifier)",
+  "timestamp": "2026-09-14T16:17:08Z",
+  "random_state": 42,
+  "features": {
+    "feature_count": 51,
+    "feature_names": [
+      "arp.opcode",
+      "arp.hw.size",
+      "icmp.checksum",
+      "icmp.seq_le",
+      "icmp.transmit_timestamp",
+      "http.content_length",
+      "http.response",
+      "tcp.ack",
+      "tcp.ack_raw",
+      "tcp.checksum",
+      "tcp.connection.fin",
+      "tcp.connection.rst",
+      "tcp.connection.syn",
+      "tcp.connection.synack",
+      "tcp.dstport",
+      "tcp.flags",
+      "tcp.flags.ack",
+      "tcp.len",
+      "tcp.seq",
+      "tcp.srcport",
+      "udp.port",
+      "udp.stream",
+      "udp.time_delta",
+      "dns.qry.name",
+      "dns.qry.qu",
+      "dns.retransmission",
+      "dns.retransmit_request",
+      "dns.retransmit_request_in",
+      "mqtt.conflag.cleansess",
+      "mqtt.conflags",
+      "mqtt.hdrflags",
+      "mqtt.len",
+      "mqtt.msgtype",
+      "mqtt.proto_len",
+      "mqtt.topic_len",
+      "mqtt.ver",
+      "mbtcp.len",
+      "mbtcp.trans_id",
+      "mbtcp.unit_id",
+      "http.request.method_GET",
+      "http.request.method_None",
+      "http.request.method_OPTIONS",
+      "http.request.method_POST",
+      "http.request.method_PROPFIND",
+      "http.request.method_PUT",
+      "http.request.method_SEARCH",
+      "http.request.method_TRACE",
+      "mqtt.protoname_MQTT",
+      "mqtt.protoname_None",
+      "mqtt.topic_None",
+      "mqtt.topic_Temperature_and_Humidity"
+    ]
+  },
+  "hyperparameters": {
+    "criterion": "gini",
+    "max_depth": null,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "splitter": "best"
+  },
+  "dataset_dimensions": {
+    "train_records": 1552870,
+    "validation_records": 332758,
+    "test_records": 332758
+  },
+  "tree_structure": {
+    "actual_depth": 11,
+    "node_count": 79,
+    "leaf_count": 40,
+    "model_size_kb": 8.6025390625
+  },
+  "edge_efficiency": {
+    "training_time_seconds": 4.06187675000001,
+    "validation_inference": {
+      "10000_records": {
+        "batch_size": 10000,
+        "total_time_seconds": 0.0005218750011408702,
+        "latency_microseconds_per_record": 0.052187500114087015,
+        "throughput_records_per_second": 19161676.604817275
+      },
+      "100000_records": {
+        "batch_size": 100000,
+        "total_time_seconds": 0.004742291999718873,
+        "latency_microseconds_per_record": 0.04742291999718873,
+        "throughput_records_per_second": 21086849.988555763
+      },
+      "full_set": {
+        "batch_size": 332758,
+        "total_time_seconds": 0.02158608399986406,
+        "latency_microseconds_per_record": 0.06487021799585302,
+        "throughput_records_per_second": 15415394.473684786
+      }
+    },
+    "test_inference": {
+      "10000_records": {
+        "batch_size": 10000,
+        "total_time_seconds": 0.0005699579996871762,
+        "latency_microseconds_per_record": 0.05699579996871762,
+        "throughput_records_per_second": 17545152.459459364
+      },
+      "100000_records": {
+        "batch_size": 100000,
+        "total_time_seconds": 0.004756625001391512,
+        "latency_microseconds_per_record": 0.04756625001391512,
+        "throughput_records_per_second": 21023309.588362716
+      },
+      "full_set": {
+        "batch_size": 332758,
+        "total_time_seconds": 0.015559250001388136,
+        "latency_microseconds_per_record": 0.04675845509766297,
+        "throughput_records_per_second": 21386506.41710318
+      }
+    }
+  },
+  "validation_comparison_table": [
+    {
+      "configuration": "Unconstrained (Baseline)",
+      "max_depth": null,
+      "min_samples_leaf": 1,
+      "actual_depth": 11,
+      "nodes": 79,
+      "leaves": 40,
+      "size_kb": 8.6,
+      "accuracy": 0.997833,
+      "precision_macro": 0.998355,
+      "recall_macro": 0.996172,
+      "f1_macro": 0.997257,
+      "roc_auc": 0.999979,
+      "latency_us_per_record": 0.065,
+      "throughput_rps": 15415394.5
+    },
+    {
+      "configuration": "Depth-12 (Full Feature)",
+      "max_depth": 12,
+      "min_samples_leaf": 1,
+      "actual_depth": 11,
+      "nodes": 79,
+      "leaves": 40,
+      "size_kb": 8.6,
+      "accuracy": 0.997833,
+      "precision_macro": 0.998355,
+      "recall_macro": 0.996172,
+      "f1_macro": 0.997257,
+      "roc_auc": 0.999979,
+      "latency_us_per_record": 0.046,
+      "throughput_rps": 21908729.5
+    },
+    {
+      "configuration": "Depth-10, MinLeaf-5",
+      "max_depth": 10,
+      "min_samples_leaf": 5,
+      "actual_depth": 10,
+      "nodes": 67,
+      "leaves": 34,
+      "size_kb": 7.67,
+      "accuracy": 0.997833,
+      "precision_macro": 0.998355,
+      "recall_macro": 0.996172,
+      "f1_macro": 0.997257,
+      "roc_auc": 0.999979,
+      "latency_us_per_record": 0.044,
+      "throughput_rps": 22700620.6
+    },
+    {
+      "configuration": "Depth-8, MinLeaf-10",
+      "max_depth": 8,
+      "min_samples_leaf": 10,
+      "actual_depth": 8,
+      "nodes": 59,
+      "leaves": 30,
+      "size_kb": 7.04,
+      "accuracy": 0.997818,
+      "precision_macro": 0.998345,
+      "recall_macro": 0.996145,
+      "f1_macro": 0.997238,
+      "roc_auc": 0.999979,
+      "latency_us_per_record": 0.045,
+      "throughput_rps": 22383264.2
+    },
+    {
+      "configuration": "Depth-6, MinLeaf-20 (Ultra-Compact)",
+      "max_depth": 6,
+      "min_samples_leaf": 20,
+      "actual_depth": 6,
+      "nodes": 35,
+      "leaves": 18,
+      "size_kb": 5.17,
+      "accuracy": 0.98724,
+      "precision_macro": 0.991195,
+      "recall_macro": 0.976695,
+      "f1_macro": 0.983641,
+      "roc_auc": 0.99652,
+      "latency_us_per_record": 0.042,
+      "throughput_rps": 23978597.6
+    }
+  ],
+  "validation_metrics": {
+    "accuracy": 0.9978332602071175,
+    "precision_macro": 0.9983547949889586,
+    "recall_macro": 0.9961721828087953,
+    "f1_macro": 0.9972565822123857,
+    "precision_normal": 0.9972219364132112,
+    "recall_normal": 0.9998101887384153,
+    "f1_normal": 0.9985143853243523,
+    "precision_attack": 0.999487653564706,
+    "recall_attack": 0.9925341768791753,
+    "f1_attack": 0.995998779100419,
+    "roc_auc": 0.9999792952499458,
+    "confusion_matrix": [
+      [
+        242300,
+        46
+      ],
+      [
+        675,
+        89737
+      ]
+    ],
+    "true_negatives": 242300,
+    "false_positives": 46,
+    "false_negatives": 675,
+    "true_positives": 89737
+  },
+  "final_test_metrics": {
+    "accuracy": 0.9976890112333888,
+    "precision_macro": 0.9982174639624999,
+    "recall_macro": 0.9959448260619401,
+    "f1_macro": 0.997073655450144,
+    "precision_normal": 0.9970699829631032,
+    "recall_normal": 0.9997648000594189,
+    "f1_normal": 0.9984155731236698,
+    "precision_attack": 0.9993649449618967,
+    "recall_attack": 0.9921248520644612,
+    "f1_attack": 0.9957317377766184,
+    "roc_auc": 0.9999781778280764,
+    "confusion_matrix": [
+      [
+        242290,
+        57
+      ],
+      [
+        712,
+        89699
+      ]
+    ],
+    "true_negatives": 242290,
+    "false_positives": 57,
+    "false_negatives": 712,
+    "true_positives": 89699
+  },
+  "class_imbalance_analysis": {
+    "train_class_ratio": {
+      "Normal": 0.7283,
+      "Attack": 0.2717
+    },
+    "test_precision_gap": 0.002294961998793421,
+    "test_recall_gap": 0.007639947994957708,
+    "test_f1_gap": 0.002683835347051411
+  }
+}

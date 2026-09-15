@@ -1,0 +1,25 @@
+# Phase 1: Environment, Dataset Setup & Inspection
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+jupyter
+
+# Phase 3: High-Performance Data Processing & Parquet Storage
+pyarrow
+
+# Phase 5: Fog/Server-Level Deep Learning Intrusion Detection Model
+torch
+
+# Phase 6: Explainable AI (XAI) Integration
+shap
+lime
+
+# Phase 7: Multi-Agent Orchestration & Data Contracts
+pydantic>=2.10.0,<3.0.0
+langgraph>=1.2.0,<2.0.0
+langchain-core>=1.6.0,<2.0.0
+
+# Phase 8A: MongoDB Quarantine Store
+pymongo==4.11.2

@@ -1,0 +1,129 @@
+{
+  "event_id": "DEMO-SCENARIO-3-POISONING",
+  "timestamp_utc": "2026-09-14T18:34:17.264427+00:00",
+  "raw_input": {
+    "source_ip": "192.168.1.205",
+    "destination_ip": "192.168.1.5",
+    "protocol": "arp/ip",
+    "feature_count": 51
+  },
+  "physical_context": {
+    "asset_id": "ROBOT-ARM-CELL-3",
+    "asset_type": "Robot_Arm",
+    "asset_criticality": 5,
+    "human_worker_present": true,
+    "worker_distance_m": 1.2,
+    "human_proximity_factor": 1.88,
+    "is_simulated_context": true
+  },
+  "detection": {
+    "tier1_prediction": "Attack",
+    "tier1_confidence": 1.0,
+    "fast_tracked": false,
+    "tier2_prediction": "MITM",
+    "tier2_confidence": 0.9923,
+    "tier2_probabilities": {
+      "Normal": 0.0,
+      "Backdoor": 0.0,
+      "DDoS_HTTP": 0.0,
+      "DDoS_ICMP": 0.0,
+      "DDoS_TCP": 0.0,
+      "DDoS_UDP": 0.0,
+      "Fingerprinting": 0.0,
+      "MITM": 0.9923,
+      "Password": 0.0077,
+      "Port_Scanning": 0.0,
+      "Ransomware": 0.0,
+      "SQL_injection": 0.0,
+      "Uploading": 0.0,
+      "Vulnerability_scanner": 0.0,
+      "XSS": 0.0
+    },
+    "effective_prediction": "MITM",
+    "effective_confidence": 0.9923,
+    "latency_ms": 0.274
+  },
+  "xai": {
+    "top_features": [
+      {
+        "rank": 1,
+        "feature_name": "icmp.transmit_timestamp",
+        "shap_value": 524621.75,
+        "feature_value": 0.0
+      },
+      {
+        "rank": 2,
+        "feature_name": "udp.stream",
+        "shap_value": 461.894653,
+        "feature_value": 0.0
+      },
+      {
+        "rank": 3,
+        "feature_name": "dns.qry.name",
+        "shap_value": 207.952866,
+        "feature_value": 0.0
+      },
+      {
+        "rank": 4,
+        "feature_name": "tcp.ack",
+        "shap_value": 106.341949,
+        "feature_value": -0.103448
+      },
+      {
+        "rank": 5,
+        "feature_name": "tcp.seq",
+        "shap_value": 78.553207,
+        "feature_value": 0.164891
+      }
+    ],
+    "xai_alignment_score": 0.6667,
+    "method": "shap.DeepExplainer",
+    "summary": "SHAP DeepExplainer attributed prediction 'MITM' primarily to: icmp.transmit_timestamp (+524621.750), udp.stream (+461.895), dns.qry.name (+207.953) with domain alignment 0.67",
+    "latency_ms": 26.096
+  },
+  "risk": {
+    "composite_risk": 92.963,
+    "risk_level": "CRITICAL",
+    "normalized_threat_severity": 0.95,
+    "normalized_confidence": 0.9923,
+    "normalized_asset_criticality": 1.0,
+    "normalized_human_proximity": 0.88,
+    "normalized_xai_alignment": 0.6667,
+    "weights": {
+      "w_threat_severity": 0.35,
+      "w_detection_confidence": 0.2,
+      "w_asset_criticality": 0.2,
+      "w_human_proximity": 0.15,
+      "w_xai_alignment": 0.1
+    },
+    "formula": "R = 100 * (0.35*S + 0.2*C + 0.2*A + 0.15*H + 0.1*X)"
+  },
+  "decision": {
+    "action": "QUARANTINE_AND_ESTOP_RECOMMENDATION",
+    "requires_human_approval": true,
+    "pdp_rule_triggered": "PDP-RULE-05-CRITICAL_SAFETY_ESTOP",
+    "rationale": "Severe attack 'MITM' (risk=92.96, conf=0.99) targeting critical asset (crit=5) in close proximity to human worker (dist=1.2m). Enforcing network quarantine and recommending emergency machinery stop.",
+    "safety_advisory": "ADVISORY: Emergency Stop recommended. Autonomous physical actuation disabled by safety policy. Operator confirmation required."
+  },
+  "response": {
+    "simulated_commands": [
+      "SIMULATED_ENFORCEMENT_COMMAND: iptables -I FORWARD 1 -s 192.168.1.205 -j DROP",
+      "SIMULATED_ENFORCEMENT_COMMAND: bpftool map update id 42 key 0xc0a801cd value 0x01",
+      "SIMULATED_ENFORCEMENT_COMMAND: echo 'ADVISORY_RECOMMEND_ESTOP: asset=ROBOT-ARM-CELL-3, flow=DEMO-SCENARIO-3-POISONING' >> /var/log/safety_advisory.log"
+    ],
+    "action_executed": "QUARANTINE_AND_ESTOP_RECOMMENDATION",
+    "quarantined": true,
+    "incident_logged": true,
+    "incident_file": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/experiments/incidents/incident_DEMO-SCENARIO-3-POISONING.json",
+    "execution_timestamp": "2026-09-14T18:34:17.292164+00:00"
+  },
+  "audit_trail": [
+    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-3-POISONING at 2026-09-14T18:34:17.264427+00:00",
+    "MonitoringAgent: Ingested and validated flow 192.168.1.205:502 -> 192.168.1.5:502 (arp/ip) [asset=ROBOT-ARM-CELL-3, criticality=5, worker_dist=1.2m]",
+    "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'MITM' (conf=0.9923) [latency=0.27ms]",
+    "XAIAgent: Computed SHAP attributions in 26.10ms. Top features: [icmp.transmit_timestamp (+524621.750), udp.stream (+461.895), dns.qry.name (+207.953)]. Domain alignment: 0.67",
+    "RiskAssessmentAgent: Evaluated risk=92.96 (CRITICAL) for threat='MITM' on asset crit=5",
+    "DecisionAgent: PDP selected action 'QUARANTINE_AND_ESTOP_RECOMMENDATION' via rule PDP-RULE-05-CRITICAL_SAFETY_ESTOP [HITL_REQUIRED]",
+    "ResponseAgent: Enforced action 'QUARANTINE_AND_ESTOP_RECOMMENDATION' via 3 simulated command(s). Quarantine=True. Forensic incident logged."
+  ]
+}

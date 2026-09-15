@@ -1,0 +1,32 @@
+{
+  "num_features_in": 63,
+  "num_features_transformed": 51,
+  "numerical_features_count": 39,
+  "categorical_features_count": 3,
+  "encoded_categorical_count": 12,
+  "dropped_features_count": 19,
+  "multiclass_classes": {
+    "Normal": 0,
+    "Backdoor": 1,
+    "DDoS_HTTP": 2,
+    "DDoS_ICMP": 3,
+    "DDoS_TCP": 4,
+    "DDoS_UDP": 5,
+    "Fingerprinting": 6,
+    "MITM": 7,
+    "Password": 8,
+    "Port_Scanning": 9,
+    "Ransomware": 10,
+    "SQL_injection": 11,
+    "Uploading": 12,
+    "Vulnerability_scanner": 13,
+    "XSS": 14
+  },
+  "binary_classes": {
+    "0": "Normal",
+    "1": "Attack"
+  },
+  "scaler_type": "RobustScaler",
+  "imputer_type": "SimpleImputer(strategy='median')",
+  "encoder_type": "OneHotEncoder(handle_unknown='ignore')"
+}

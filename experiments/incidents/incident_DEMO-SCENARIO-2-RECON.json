@@ -1,0 +1,128 @@
+{
+  "event_id": "DEMO-SCENARIO-2-RECON",
+  "timestamp_utc": "2026-09-14T18:34:17.086629+00:00",
+  "raw_input": {
+    "source_ip": "192.168.1.150",
+    "destination_ip": "192.168.1.20",
+    "protocol": "tcp",
+    "feature_count": 51
+  },
+  "physical_context": {
+    "asset_id": "SENSOR-GATEWAY-02",
+    "asset_type": "Sensor_Gateway",
+    "asset_criticality": 2,
+    "human_worker_present": false,
+    "worker_distance_m": 15.0,
+    "human_proximity_factor": 1.0,
+    "is_simulated_context": true
+  },
+  "detection": {
+    "tier1_prediction": "Attack",
+    "tier1_confidence": 1.0,
+    "fast_tracked": false,
+    "tier2_prediction": "Port_Scanning",
+    "tier2_confidence": 0.9992,
+    "tier2_probabilities": {
+      "Normal": 0.0,
+      "Backdoor": 0.0,
+      "DDoS_HTTP": 0.0,
+      "DDoS_ICMP": 0.0,
+      "DDoS_TCP": 0.0001,
+      "DDoS_UDP": 0.0,
+      "Fingerprinting": 0.0,
+      "MITM": 0.0,
+      "Password": 0.0,
+      "Port_Scanning": 0.9992,
+      "Ransomware": 0.0005,
+      "SQL_injection": 0.0,
+      "Uploading": 0.0001,
+      "Vulnerability_scanner": 0.0,
+      "XSS": 0.0
+    },
+    "effective_prediction": "Port_Scanning",
+    "effective_confidence": 0.9992,
+    "latency_ms": 20.434
+  },
+  "xai": {
+    "top_features": [
+      {
+        "rank": 1,
+        "feature_name": "icmp.transmit_timestamp",
+        "shap_value": 192606.875,
+        "feature_value": 0.0
+      },
+      {
+        "rank": 2,
+        "feature_name": "dns.qry.name",
+        "shap_value": 1178.992554,
+        "feature_value": 0.0
+      },
+      {
+        "rank": 3,
+        "feature_name": "udp.stream",
+        "shap_value": 820.359558,
+        "feature_value": 0.0
+      },
+      {
+        "rank": 4,
+        "feature_name": "icmp.seq_le",
+        "shap_value": 94.910995,
+        "feature_value": 0.0
+      },
+      {
+        "rank": 5,
+        "feature_name": "tcp.ack",
+        "shap_value": 55.923405,
+        "feature_value": -0.086207
+      }
+    ],
+    "xai_alignment_score": 0.4,
+    "method": "shap.DeepExplainer",
+    "summary": "SHAP DeepExplainer attributed prediction 'Port_Scanning' primarily to: icmp.transmit_timestamp (+192606.875), dns.qry.name (+1178.993), udp.stream (+820.360) with domain alignment 0.40",
+    "latency_ms": 153.892
+  },
+  "risk": {
+    "composite_risk": 39.484,
+    "risk_level": "MEDIUM",
+    "normalized_threat_severity": 0.3,
+    "normalized_confidence": 0.9992,
+    "normalized_asset_criticality": 0.25,
+    "normalized_human_proximity": 0.0,
+    "normalized_xai_alignment": 0.4,
+    "weights": {
+      "w_threat_severity": 0.35,
+      "w_detection_confidence": 0.2,
+      "w_asset_criticality": 0.2,
+      "w_human_proximity": 0.15,
+      "w_xai_alignment": 0.1
+    },
+    "formula": "R = 100 * (0.35*S + 0.2*C + 0.2*A + 0.15*H + 0.1*X)"
+  },
+  "decision": {
+    "action": "MONITOR",
+    "requires_human_approval": false,
+    "pdp_rule_triggered": "PDP-RULE-01-ENHANCED_MONITOR",
+    "rationale": "Low-severity telemetry (risk=39.48). Enhanced packet logging active; zero service disruption.",
+    "safety_advisory": null
+  },
+  "response": {
+    "simulated_commands": [
+      "SIMULATED_ENFORCEMENT_COMMAND: tcpdump -i eth0 -n -s 0 -w /var/log/audit/flow_DEMO-SCENARIO-2-RECON.pcap host 192.168.1.150",
+      "SIMULATED_ENFORCEMENT_COMMAND: iptables -A FORWARD -s 192.168.1.150 -j LOG --log-prefix 'ZERO_TRUST_MONITOR: '"
+    ],
+    "action_executed": "MONITOR",
+    "quarantined": false,
+    "incident_logged": true,
+    "incident_file": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/experiments/incidents/incident_DEMO-SCENARIO-2-RECON.json",
+    "execution_timestamp": "2026-09-14T18:34:17.262596+00:00"
+  },
+  "audit_trail": [
+    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-2-RECON at 2026-09-14T18:34:17.086629+00:00",
+    "MonitoringAgent: Ingested and validated flow 192.168.1.150:502 -> 192.168.1.20:502 (tcp) [asset=SENSOR-GATEWAY-02, criticality=2, worker_dist=15.0m]",
+    "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'Port_Scanning' (conf=0.9992) [latency=20.43ms]",
+    "XAIAgent: Computed SHAP attributions in 153.89ms. Top features: [icmp.transmit_timestamp (+192606.875), dns.qry.name (+1178.993), udp.stream (+820.360)]. Domain alignment: 0.40",
+    "RiskAssessmentAgent: Evaluated risk=39.48 (MEDIUM) for threat='Port_Scanning' on asset crit=2",
+    "DecisionAgent: PDP selected action 'MONITOR' via rule PDP-RULE-01-ENHANCED_MONITOR",
+    "ResponseAgent: Enforced action 'MONITOR' via 2 simulated command(s). Quarantine=False. Forensic incident logged."
+  ]
+}
