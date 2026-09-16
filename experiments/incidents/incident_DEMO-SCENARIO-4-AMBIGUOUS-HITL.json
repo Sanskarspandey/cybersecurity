@@ -1,6 +1,6 @@
 {
   "event_id": "DEMO-SCENARIO-4-AMBIGUOUS-HITL",
-  "timestamp_utc": "2026-09-14T18:34:17.293194+00:00",
+  "timestamp_utc": "2026-09-16T04:54:07.174002+00:00",
   "raw_input": {
     "source_ip": "192.168.1.188",
     "destination_ip": "192.168.1.8",
@@ -41,7 +41,7 @@
     },
     "effective_prediction": "DDoS_HTTP",
     "effective_confidence": 0.4857,
-    "latency_ms": 0.221
+    "latency_ms": 0.274
   },
   "xai": {
     "top_features": [
@@ -79,7 +79,7 @@
     "xai_alignment_score": 0.4,
     "method": "shap.DeepExplainer",
     "summary": "SHAP DeepExplainer attributed prediction 'DDoS_HTTP' primarily to: icmp.transmit_timestamp (+462855.375), udp.stream (+838.798), dns.qry.name (+819.080) with domain alignment 0.40",
-    "latency_ms": 25.659
+    "latency_ms": 23.456
   },
   "risk": {
     "composite_risk": 72.714,
@@ -114,13 +114,13 @@
     "quarantined": false,
     "incident_logged": true,
     "incident_file": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/experiments/incidents/incident_DEMO-SCENARIO-4-AMBIGUOUS-HITL.json",
-    "execution_timestamp": "2026-09-14T18:34:17.320361+00:00"
+    "execution_timestamp": "2026-09-16T04:54:07.199188+00:00"
   },
   "audit_trail": [
-    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-4-AMBIGUOUS-HITL at 2026-09-14T18:34:17.293194+00:00",
+    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-4-AMBIGUOUS-HITL at 2026-09-16T04:54:07.174002+00:00",
     "MonitoringAgent: Ingested and validated flow 192.168.1.188:502 -> 192.168.1.8:502 (http) [asset=SAFETY-PLC-CELL-1, criticality=5, worker_dist=1.5m]",
-    "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'DDoS_HTTP' (conf=0.4857) [latency=0.22ms]",
-    "XAIAgent: Computed SHAP attributions in 25.66ms. Top features: [icmp.transmit_timestamp (+462855.375), udp.stream (+838.798), dns.qry.name (+819.080)]. Domain alignment: 0.40",
+    "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'DDoS_HTTP' (conf=0.4857) [latency=0.27ms]",
+    "XAIAgent: Computed SHAP attributions in 23.46ms. Top features: [icmp.transmit_timestamp (+462855.375), udp.stream (+838.798), dns.qry.name (+819.080)]. Domain alignment: 0.40",
     "RiskAssessmentAgent: Evaluated risk=72.71 (HIGH) for threat='DDoS_HTTP' on asset crit=5",
     "DecisionAgent: PDP selected action 'ESCALATE_TO_HUMAN_AMBIGUOUS' via rule PDP-RULE-04-HITL_AMBIGUOUS [HITL_REQUIRED]",
     "ResponseAgent: Enforced action 'ESCALATE_TO_HUMAN_AMBIGUOUS' via 2 simulated command(s). Quarantine=False. Forensic incident logged."

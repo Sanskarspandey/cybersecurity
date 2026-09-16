@@ -1,6 +1,6 @@
 {
   "event_id": "DEMO-SCENARIO-3-POISONING",
-  "timestamp_utc": "2026-09-14T18:34:17.264427+00:00",
+  "timestamp_utc": "2026-09-16T04:54:07.147416+00:00",
   "raw_input": {
     "source_ip": "192.168.1.205",
     "destination_ip": "192.168.1.5",
@@ -79,7 +79,7 @@
     "xai_alignment_score": 0.6667,
     "method": "shap.DeepExplainer",
     "summary": "SHAP DeepExplainer attributed prediction 'MITM' primarily to: icmp.transmit_timestamp (+524621.750), udp.stream (+461.895), dns.qry.name (+207.953) with domain alignment 0.67",
-    "latency_ms": 26.096
+    "latency_ms": 23.605
   },
   "risk": {
     "composite_risk": 92.963,
@@ -115,13 +115,13 @@
     "quarantined": true,
     "incident_logged": true,
     "incident_file": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/experiments/incidents/incident_DEMO-SCENARIO-3-POISONING.json",
-    "execution_timestamp": "2026-09-14T18:34:17.292164+00:00"
+    "execution_timestamp": "2026-09-16T04:54:07.172686+00:00"
   },
   "audit_trail": [
-    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-3-POISONING at 2026-09-14T18:34:17.264427+00:00",
+    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-3-POISONING at 2026-09-16T04:54:07.147416+00:00",
     "MonitoringAgent: Ingested and validated flow 192.168.1.205:502 -> 192.168.1.5:502 (arp/ip) [asset=ROBOT-ARM-CELL-3, criticality=5, worker_dist=1.2m]",
     "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'MITM' (conf=0.9923) [latency=0.27ms]",
-    "XAIAgent: Computed SHAP attributions in 26.10ms. Top features: [icmp.transmit_timestamp (+524621.750), udp.stream (+461.895), dns.qry.name (+207.953)]. Domain alignment: 0.67",
+    "XAIAgent: Computed SHAP attributions in 23.61ms. Top features: [icmp.transmit_timestamp (+524621.750), udp.stream (+461.895), dns.qry.name (+207.953)]. Domain alignment: 0.67",
     "RiskAssessmentAgent: Evaluated risk=92.96 (CRITICAL) for threat='MITM' on asset crit=5",
     "DecisionAgent: PDP selected action 'QUARANTINE_AND_ESTOP_RECOMMENDATION' via rule PDP-RULE-05-CRITICAL_SAFETY_ESTOP [HITL_REQUIRED]",
     "ResponseAgent: Enforced action 'QUARANTINE_AND_ESTOP_RECOMMENDATION' via 3 simulated command(s). Quarantine=True. Forensic incident logged."

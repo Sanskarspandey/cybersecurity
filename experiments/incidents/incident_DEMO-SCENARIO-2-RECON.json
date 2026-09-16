@@ -1,6 +1,6 @@
 {
   "event_id": "DEMO-SCENARIO-2-RECON",
-  "timestamp_utc": "2026-09-14T18:34:17.086629+00:00",
+  "timestamp_utc": "2026-09-16T04:54:07.097355+00:00",
   "raw_input": {
     "source_ip": "192.168.1.150",
     "destination_ip": "192.168.1.20",
@@ -41,7 +41,7 @@
     },
     "effective_prediction": "Port_Scanning",
     "effective_confidence": 0.9992,
-    "latency_ms": 20.434
+    "latency_ms": 2.579
   },
   "xai": {
     "top_features": [
@@ -79,7 +79,7 @@
     "xai_alignment_score": 0.4,
     "method": "shap.DeepExplainer",
     "summary": "SHAP DeepExplainer attributed prediction 'Port_Scanning' primarily to: icmp.transmit_timestamp (+192606.875), dns.qry.name (+1178.993), udp.stream (+820.360) with domain alignment 0.40",
-    "latency_ms": 153.892
+    "latency_ms": 44.144
   },
   "risk": {
     "composite_risk": 39.484,
@@ -114,13 +114,13 @@
     "quarantined": false,
     "incident_logged": true,
     "incident_file": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/experiments/incidents/incident_DEMO-SCENARIO-2-RECON.json",
-    "execution_timestamp": "2026-09-14T18:34:17.262596+00:00"
+    "execution_timestamp": "2026-09-16T04:54:07.145657+00:00"
   },
   "audit_trail": [
-    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-2-RECON at 2026-09-14T18:34:17.086629+00:00",
+    "MonitoringAgent: Initialized telemetry envelope for event DEMO-SCENARIO-2-RECON at 2026-09-16T04:54:07.097355+00:00",
     "MonitoringAgent: Ingested and validated flow 192.168.1.150:502 -> 192.168.1.20:502 (tcp) [asset=SENSOR-GATEWAY-02, criticality=2, worker_dist=15.0m]",
-    "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'Port_Scanning' (conf=0.9992) [latency=20.43ms]",
-    "XAIAgent: Computed SHAP attributions in 153.89ms. Top features: [icmp.transmit_timestamp (+192606.875), dns.qry.name (+1178.993), udp.stream (+820.360)]. Domain alignment: 0.40",
+    "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'Port_Scanning' (conf=0.9992) [latency=2.58ms]",
+    "XAIAgent: Computed SHAP attributions in 44.14ms. Top features: [icmp.transmit_timestamp (+192606.875), dns.qry.name (+1178.993), udp.stream (+820.360)]. Domain alignment: 0.40",
     "RiskAssessmentAgent: Evaluated risk=39.48 (MEDIUM) for threat='Port_Scanning' on asset crit=2",
     "DecisionAgent: PDP selected action 'MONITOR' via rule PDP-RULE-01-ENHANCED_MONITOR",
     "ResponseAgent: Enforced action 'MONITOR' via 2 simulated command(s). Quarantine=False. Forensic incident logged."

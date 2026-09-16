@@ -1,6 +1,6 @@
 {
   "event_id": "val-latency-001",
-  "timestamp_utc": "2026-09-14T19:05:47.755776+00:00",
+  "timestamp_utc": "2026-09-16T04:53:59.519201+00:00",
   "raw_input": {
     "source_ip": "192.168.1.105",
     "destination_ip": "192.168.1.10",
@@ -25,7 +25,7 @@
     "tier2_probabilities": null,
     "effective_prediction": "Normal",
     "effective_confidence": 1.0,
-    "latency_ms": 0.147
+    "latency_ms": 0.144
   },
   "xai": {
     "top_features": [],
@@ -66,12 +66,12 @@
     "quarantined": false,
     "incident_logged": true,
     "incident_file": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/experiments/incidents/incident_val-latency-001.json",
-    "execution_timestamp": "2026-09-14T19:05:47.757087+00:00"
+    "execution_timestamp": "2026-09-16T04:53:59.520468+00:00"
   },
   "audit_trail": [
-    "MonitoringAgent: Initialized telemetry envelope for event val-latency-001 at 2026-09-14T19:05:47.755776+00:00",
+    "MonitoringAgent: Initialized telemetry envelope for event val-latency-001 at 2026-09-16T04:53:59.519201+00:00",
     "MonitoringAgent: Ingested and validated flow 192.168.1.105:502 -> 192.168.1.10:502 (modbus_tcp) [asset=PLC-LINE-01, criticality=3, worker_dist=10.0m]",
-    "DetectionAgent: Tier 1 Edge predicted 'Normal' (conf=1.0000 >= 0.95) -> FAST-TRACKED (Bypassed Fog DL & XAI) [latency=0.15ms]",
+    "DetectionAgent: Tier 1 Edge predicted 'Normal' (conf=1.0000 >= 0.95) -> FAST-TRACKED (Bypassed Fog DL & XAI) [latency=0.14ms]",
     "RiskAssessmentAgent: Evaluated risk=10.00 (LOW) for threat='Normal' on asset crit=3",
     "DecisionAgent: PDP selected action 'ALLOW' via rule PDP-RULE-01-FAST_TRACK_ALLOW",
     "ResponseAgent: Enforced action 'ALLOW' via 1 simulated command(s). Quarantine=False. Forensic incident logged."

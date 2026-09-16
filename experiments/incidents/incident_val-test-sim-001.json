@@ -1,6 +1,6 @@
 {
   "event_id": "val-test-sim-001",
-  "timestamp_utc": "2026-09-14T19:05:47.700249+00:00",
+  "timestamp_utc": "2026-09-16T04:53:59.469090+00:00",
   "raw_input": {
     "source_ip": "192.168.1.105",
     "destination_ip": "192.168.1.10",
@@ -41,7 +41,7 @@
     },
     "effective_prediction": "MITM",
     "effective_confidence": 0.9923,
-    "latency_ms": 0.321
+    "latency_ms": 0.296
   },
   "xai": {
     "top_features": [
@@ -79,7 +79,7 @@
     "xai_alignment_score": 0.6667,
     "method": "shap.DeepExplainer",
     "summary": "SHAP DeepExplainer attributed prediction 'MITM' primarily to: icmp.transmit_timestamp (+524621.750), udp.stream (+461.895), dns.qry.name (+207.953) with domain alignment 0.67",
-    "latency_ms": 25.638
+    "latency_ms": 25.563
   },
   "risk": {
     "composite_risk": 69.763,
@@ -115,13 +115,13 @@
     "quarantined": true,
     "incident_logged": true,
     "incident_file": "/Users/sanskarspandey/Documents/apna_college/industry5_zero_trust/experiments/incidents/incident_val-test-sim-001.json",
-    "execution_timestamp": "2026-09-14T19:05:47.729734+00:00"
+    "execution_timestamp": "2026-09-16T04:53:59.497741+00:00"
   },
   "audit_trail": [
-    "MonitoringAgent: Initialized telemetry envelope for event val-test-sim-001 at 2026-09-14T19:05:47.700249+00:00",
+    "MonitoringAgent: Initialized telemetry envelope for event val-test-sim-001 at 2026-09-16T04:53:59.469090+00:00",
     "MonitoringAgent: Ingested and validated flow 192.168.1.105:502 -> 192.168.1.10:502 (modbus_tcp) [asset=PLC-LINE-01, criticality=3, worker_dist=10.0m]",
-    "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'MITM' (conf=0.9923) [latency=0.32ms]",
-    "XAIAgent: Computed SHAP attributions in 25.64ms. Top features: [icmp.transmit_timestamp (+524621.750), udp.stream (+461.895), dns.qry.name (+207.953)]. Domain alignment: 0.67",
+    "DetectionAgent: Tier 1 Edge triage='Attack' (conf=1.0000). Escalated to Tier 2 Fog DNN -> Classified 'MITM' (conf=0.9923) [latency=0.30ms]",
+    "XAIAgent: Computed SHAP attributions in 25.56ms. Top features: [icmp.transmit_timestamp (+524621.750), udp.stream (+461.895), dns.qry.name (+207.953)]. Domain alignment: 0.67",
     "RiskAssessmentAgent: Evaluated risk=69.76 (HIGH) for threat='MITM' on asset crit=3",
     "DecisionAgent: PDP selected action 'QUARANTINE' via rule PDP-RULE-03-AUTOMATED_QUARANTINE",
     "ResponseAgent: Enforced action 'QUARANTINE' via 3 simulated command(s). Quarantine=True. Forensic incident logged."
